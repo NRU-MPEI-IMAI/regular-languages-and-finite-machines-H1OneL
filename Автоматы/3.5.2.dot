@@ -1,0 +1,24 @@
+digraph {
+	rankdir=LR;
+	margin=0.2;
+	size=5;
+	node [margin=0.1 shape=circle];
+	q10[margin=0 shape=doublecircle];
+	" "[color=white width=0];
+	" " -> q1;
+	q1 -> q2 [label="a,b"];
+	q2 -> q3 [label="a"];
+	q2 -> q4 [label="b"];
+	q3 -> q5 [label="a"];
+	q3 -> q6 [label="b"];
+	q4 -> q5 [label="b"];
+	q4 -> q7 [label="a"];
+	q5 -> q10 [label="a,b"];
+	q6 -> q5 [label="b"]
+	q6 -> q9 [label="a"]
+	q7 -> q5 [label="a"]
+	q7 -> q8 [label="b"]
+	q8 -> q5 [label="a,b"]
+	q9 -> q5 [label="a,b"]
+	q10 -> q10 [label="a,b"]
+}
