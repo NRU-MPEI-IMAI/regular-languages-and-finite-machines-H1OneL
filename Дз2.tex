@@ -1,0 +1,178 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}	
+\usepackage{morewrites}
+\usepackage[pdf]{graphviz}
+\usepackage{ragged2e}
+\usepackage[english,russian]{babel}	% локализация и переносы
+% Математика
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools,amstext} 
+
+\begin{document}
+    \begin{titlepage}
+
+        \thispagestyle{empty}
+
+        \centerline{НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ}
+        \centerline{МОСКОВСКИЙ ЭНЕРГЕТИЧЕСКИЙ ИНСТИТУТ}
+
+        \vfill
+
+        \centerline{\huge{Домашняя работа №2}}
+        \centerline{\large{по дисциплине}}
+        \centerline{\LARGE{Теоретические модели вычислений}}
+
+        \vfill
+
+        \largeСтудент группы А-13б-19 \hfill \largeХрущев А.П.
+
+        \largeПреподаватель \hfill \large Ивлиев С.А./
+
+        \vfill
+
+        \centerline{Москва, 2022}
+        \clearpage
+    \end{titlepage}
+    
+    \huge{\centerline{Задание №1.} \\Для следующих языков постройте \\ \centerline{КС-грамматику.}\\}
+        \begin{enumerate}
+        
+        \LARGE
+        \item   В алфавите \(\sum\ =\ \{a,b,c\}\) постройте грамматику для языка \(L\ =\ \{\omega\ \in \ \sum^*|\omega\ \text{содержит подстроку} \ aa\}.\) Например, \( \{aa, baac, caabb\} \subset L.\)\\
+        
+        \hspace*{-20mm} \(S\rightarrow cS\ | \ bS \ | \ aaS_1 \ | \ aS\)\\
+        \hspace*{-20mm} \(S_1\rightarrow aS_1 \ | \ bS_1 \ | \ cS_1 \ | \ \lambda\)\\
+        
+        \item В алфавите \(\sum\ =\ \{a,b,c\}\) постройте грамматику для языка \(L\ =\ \{\omega\ \in \ \sum^*|\omega\ \text{не полиндром}.\}\) \\
+        
+        \hspace*{-20mm}\(S\rightarrow aS_1\ | \ bS_2 \ | \ cS_3 \)\\
+		\hspace*{-20mm}\(S_1\rightarrow S_4b \ | \ S_4c \ | \ Sa \)\\
+		\hspace*{-20mm}\(S_2\rightarrow S_4a \ | \ S_4c \ | \ Sb \)\\
+		\hspace*{-20mm}\(S_3\rightarrow S_4a \ | \ S_4b \ | \ Sc \)\\
+		\hspace*{-20mm}\(S_4\rightarrow aS_1\ | \ bS_2 \ | \ cS_3 \ | \ \lambda\)\\
+		
+		\item В алфавите \(\sum\ =\ \{\emptyset,\ \mathbb{N},\ '\{'\ ,\ '\}'\ ,\ ','\ ,\ \cup\}\) постройте грамматику для языка \\ \(L\ =\ \{\omega\ \in \sum^*|\omega\ - \}\) синтаксически корректная строка обозначающая множество.\\
+        
+        \hspace*{-20mm}\(S\rightarrow \emptyset\ | \ \mathbb{N} \ | \ \{S_1\} \ | \  \cup\)\\
+		\hspace*{-20mm}\(S_1\rightarrow S,S_2 \ | \ S \ | \ \lambda \)\\
+		\hspace*{-20mm}\(S_2\rightarrow S,S_2 \ | \ S\)\\
+		
+        \end{enumerate}
+        
+    \huge{\centerline{Задание №2.}}
+        \begin{enumerate}
+        
+        \LARGE
+		\item Докажите что язык \(A\) регулярный (построением) или не регулярный (через лемму о накачке)\\\\
+		 
+		 \(\omega = 1^n + 1^m = 1^{2n}, |\omega|\geq n\)\\
+		 \(\omega = xyz\)\\
+		 \(x = 1^i, y=1^j, i+j\leq n, i>0\)\\
+		 \(z = 1^{n-i-j} + 1^n = 1^{2n}, |xy|\leq n, |y|<0\)\\
+		 \(xy^kz=1^i1^{kj}1^{n-i-j}+1^n= 1^{2n}\)\\
+		 K=0\\
+		 \(xy^0z=1^i1^{0}1^{n-i-j}+1^n=1^{n-j}+1^n =1^{2n} \notin A\)\\ 
+		 \(\text{Язык не регулярный.}\)\\
+		 
+		\item Постройте КС-грамматику для языка \(A\), показывающую, что \(A\ -\) контекстно-свободный\\\\
+		
+		\hspace*{-20mm}\(S\rightarrow 1S1\ | \ +S_1 \)\\
+		\hspace*{-20mm}\(S_1\rightarrow 1S_11 \ | \ = \)\\\\
+	
+        \end{enumerate}
+        
+    \huge{\centerline{Задание №3.}}
+        \begin{enumerate}
+        
+        \LARGE
+        \item Вы пошли гулять с собакой, ваша собака на поводке длины 2. Это значит что она не может отойти от вас более чем на 2 шага. Пусть  \(\sum\ =\ \{h,d\}\), где \(h\ -\) ваше перемещение на один шаг вперёд, а \(d\ -\) шаг собаки. Прогулка может быть завершена, если собака и человек оказались в одной точке.\\
+		
+		Пусть \(D_1\ =\ \{\omega \ \in \sum^*|\omega \text{ описывает последовательность}\\ 
+		\text{ваших шагов и шагов вашей собаки на прогулке с по-} \\ 
+		\text{водком}\}\)\\
+		
+		\hspace*{-20mm}(a) Докажите, что язык \(D_1\) регулярный(построением) \\
+		\hspace*{-20mm}или не регулярный (через лемму о накачке).\\
+		
+		\begin{center}
+                \digraph{2} 
+        \end{center}
+        
+		\hspace*{-20mm}(б) Постройте КС-грамматику для языка \(D_1\), пока- \\
+		\hspace*{-20mm} зывающую, что \(D_1\ -\) контекстно-свободный.\\\\
+		
+		\hspace*{-20mm}\(S\rightarrow hS_1\ | \ dS_2 \ | \ \lambda \)\\
+		\hspace*{-20mm}\(S_1\rightarrow hdS_1 \ | \ dS \)\\
+		\hspace*{-20mm}\(S_2\rightarrow dhS_2 \ | \ hS \)\\
+			
+		\item Допустим теперь, что вы также пошли на прогулку с собакой, но не взяли с собой поводок. Это значит, что вы можете отдалится от собаки на любое расстояние.\\
+		
+		Пусть \(D_2\ =\ \{\omega \ \in \sum^*|\omega\)  описывает после- \\
+		довательность ваших шагов и шагов вашей \\
+		собаки на прогулке без поводка\}.\\	
+		
+		\hspace*{-20mm}(a) Докажите, что язык \(D_2\) регулярный(построением) 
+		\hspace*{-20mm}\(\text{или не регулярный (через лемму о накачке).}\)\\
+		
+		\(\omega = h^n + d^n, |\omega|\geq n\)\\
+		 \(\omega = xyz\)\\
+		 \(x = h^i, y=h^j, i+j\leq n, i>0\)\\
+		 \(z = h^{n-i-j}d^n , |xy|\leq n, |y|<0\)\\
+		 \(xy^kz=h^ih^{kj}h^{n-i-j}d^n\)\\
+		 K=0\\
+		 \(xy^0z=h^ih^{0}h^{n-i-j}d^n=h^{n-j}d^n \notin D_2\)\\ 
+		 \(\text{Язык не регулярный.}\)\\
+            
+		\hspace*{-20mm}(б) \(\text{Постройте КС-грамматику для языка } D_2\), \\
+		\hspace*{-20mm} показывающую, что \(D_2\ -\) контекстно-свободный.\\
+		
+		\(S\rightarrow dShS\ | \ hSdS \ | \ \lambda \)\\
+        \end{enumerate}
+    
+    \huge{\centerline{Задание №4.}}
+    
+    \LARGE
+    Пусть \(Perm(\omega) -\) это множество всех пермутаций строки \(\omega\), то есть, множество всех уникальных строк,
+    состоящих из тех же букв и в том же количестве, что и в \(\omega\). Если \(L\ -\) регулярный язык, то \(Perm(L)\ -\)
+    это объединение \(Perm(\omega)\) для всех \(\omega\) в \(L\). Если \(L\) регулярный, то \(Perm(L)\) иногда тоже
+    регулярный, иногда контекстно-свободный, но не регулярный, а иногда даже не контекстно-свободный.  Рассмотрите
+    следующие регулярные выражения \(R\) и установите, является ли \(Perm(R)\) регулярным, контекстно-свободным или ни
+    тем и ни другим:\\
+    
+    \begin{enumerate}
+    
+    \item \((01)^*\)
+    
+    \(\omega = 0^n1^n, |\omega|\geq n\)\\
+	\(\omega = xyz\)\\
+	\(x = 0^i, y=0^j, i+j\leq n, i>0\)\\
+	\(z = 0^{n-i-j}1^n , |xy|\leq n, |y|<0\)\\
+	\(xy^kz=0^i0^{kj}0^{n-i-j}1^n\)\\
+	K=0\\
+	\(xy^0z=0^i0^{0}0^{n-i-j}1^n=0^{n-j}1^n \notin Perm((R))\)\\ 
+	\(\text{Язык не регулярный.}\)\\
+		 
+    \item \((012)^*\)
+    
+    \begin{center}
+        \digraph{1} 
+    \end{center}
+    
+    \(S\rightarrow 0S_1\ | \ 1S_2 \ | \ \lambda \)\\
+	\(S_1\rightarrow 0S_1\ | \lambda\)\\
+	\(S_2\rightarrow 1S_2\ | \lambda\)\\
+	
+    \item \(0^*+1^*\)
+    
+    \(\omega = 0^n1^n2^n, |\omega|\geq n\)\\
+	\(\omega = xyz\)\\
+	\(x = 0^i, y=0^j, i+j\leq n, i>0\)\\
+	\(z = 0^{n-i-j}1^n2^n , |xy|\leq n, |y|<0\)\\
+	\(xy^kz=0^i0^{kj}0^{n-i-j}1^n2^n\)\\
+	K=0\\
+	\(xy^0z=0^i0^{0}0^{n-i-j}1^n2^n=0^{n-j}1^n2^n \notin Perm((R))\)\\ 
+	\(\text{Язык не регулярный.}\)\\
+	
+    \end{enumerate}
+    
+\end{document}
